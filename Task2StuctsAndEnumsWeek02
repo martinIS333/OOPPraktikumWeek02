@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+
+struct Person {
+    char name[36];
+    char surname[36];
+};
+
+struct Client {
+    char bankNumber[36];
+    double sum;
+    double liability;
+};
+
+int main()
+{
+    unsigned int n;
+    cin >> n;
+    cin.ignore();
+
+    double liabilitiesSum = 0;
+
+    Person* personNums = new Person[n];
+    Client* clientsNums = new Client[n];
+
+    for (int i = 0; i < n; i++) {
+        cin.getline(personNums[i].name, 36);
+        cin.getline(personNums[i].surname, 36);
+        cin.getline(clientsNums[i].bankNumber, 36);
+        cin >> clientsNums[i].sum;
+        cin >> clientsNums[i].liability;
+        liabilitiesSum += clientsNums[i].liability;
+        cin.ignore();
+    }
+
+    for (int i = 0; i < n; i++) {
+        cout << personNums[i].name << " " << personNums[i].surname << " :  " << clientsNums[i].bankNumber << endl;
+    }
+
+    cout << "Sum of all client's liabilities: " << liabilitiesSum << endl;
+
+    delete[] personNums;
+    delete[] clientsNums;
+
+    return 0;
+}
