@@ -1,0 +1,43 @@
+// Task 2 from Stucts and files
+//
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+struct Student {
+    char facultyNum[36];
+    char StudentName[36];
+    double averageGrade;
+};
+
+void writeFile(Student* students, int n) {
+    ofstream file("StudentsFile.txt");
+    for (int i = 0; i < n;i++) {
+        file << students[i].facultyNum << " " << students[i].StudentName << " " << students[i].averageGrade;
+        file << " " << endl;
+    }
+}
+
+int main()
+{
+    ofstream file("StudentsFile.txt");
+    
+    int n; cin >> n;
+    cin.ignore();
+
+    Student* students = new Student[n];
+
+    for (int i = 0;i < n;i++) {
+        cin.getline(students[i].facultyNum, 36);
+        cin.getline(students[i].StudentName, 36);
+        cin >> students[i].averageGrade;
+        cin.ignore();
+        cin.ignore();
+    }
+
+    writeFile(students, n);
+
+    file.close();
+    return 0;
+}
