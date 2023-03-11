@@ -19,6 +19,29 @@ void writeFile(Student* students, int n) {
     }
 }
 
+void readFile(string fileName)
+{
+    // Open the text file
+    ifstream inputFile(fileName);
+
+    // Check if the file is open
+    if (!inputFile.is_open())
+    {
+        cout << "Unable to open file: " << fileName << endl;
+        return;
+    }
+
+    // Read data from the file and print it to the console
+    string line;
+    while (inputFile >> line)
+    {
+        cout << line << endl;
+    }
+
+    // Close the file
+    inputFile.close();
+}
+
 int main()
 {
     ofstream file("StudentsFile.txt");
